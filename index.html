@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-mine株式会社 | EC小売事業・コンサルティング</title>
+  <meta name="description" content="E-mine株式会社は、Amazon・Yahoo!ショッピングを中心としたEC小売事業を展開。メーカー様・問屋様との信頼あるパートナーシップを大切にしています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       CSS Variables & Reset
+       ============================================ */
+    :root {
+      --navy-900: #0a1628;
+      --navy-800: #111f3b;
+      --navy-700: #1a2d4d;
+      --navy-600: #243b5f;
+      --navy-500: #2e4a72;
+      --slate-100: #f1f3f7;
+      --slate-200: #e2e6ed;
+      --slate-300: #c8ced9;
+      --slate-400: #9aa3b3;
+      --white: #ffffff;
+      --gold-400: #c9a84c;
+      --gold-500: #b8943f;
+      --gold-300: #d4b85e;
+      --text-primary: #1a1a2e;
+      --text-secondary: #4a4a5e;
+      --text-light: #7a7a8e;
+      --border-light: #e0e3ea;
+      --shadow-sm: 0 1px 3px rgba(10,22,40,0.06);
+      --shadow-md: 0 4px 16px rgba(10,22,40,0.08);
+      --shadow-lg: 0 8px 32px rgba(10,22,40,0.12);
+      --radius: 6px;
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-weight: 400;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================
+       Header & Navigation
+       ============================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      transition: box-shadow var(--transition);
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+      color: var(--navy-800);
+    }
+
+    .logo-mark span {
+      color: var(--gold-400);
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-400);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--navy-800);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-contact-btn {
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      background: var(--navy-800);
+      color: var(--white) !important;
+      padding: 10px 24px !important;
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+
+    .nav-contact-btn::after { display: none !important; }
+
+    .nav-contact-btn:hover {
+      background: var(--navy-600) !important;
+      color: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .menu-toggle span {
+      width: 22px;
+      height: 2px;
+      background: var(--navy-800);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    /* ============================================
+       Hero Section
+       ============================================ */
+    .hero {
+      padding: 140px 24px 100px;
+      background: linear-gradient(165deg, var(--navy-900) 0%, var(--navy-700) 50%, var(--navy-600) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 80% 20%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 300px at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold-300);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold-400);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-300);
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 2;
+      max-width: 600px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .hero-stat-num small {
+      font-size: 14px;
+      font-weight: 400;
+      margin-left: 2px;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       Section Styles
+       ============================================ */
+    .section {
+      padding: 96px 24px;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-500);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      color: var(--navy-800);
+      line-height: 1.5;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 3px;
+      background: var(--gold-400);
+      margin-top: 16px;
+      border-radius: 2px;
+    }
+
+    /* ============================================
+       Business Section
+       ============================================ */
+    .business-section {
+      background: var(--slate-100);
+    }
+
+    .business-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .business-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 40px 36px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .business-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .business-card-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .business-card-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: var(--white);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .business-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 12px;
+    }
+
+    .business-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    .business-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .business-card-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--navy-700);
+      background: var(--slate-100);
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================
+       Strength / Appeal Points
+       ============================================ */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .strength-item {
+      text-align: center;
+      padding: 36px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--border-light);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .strength-item:hover {
+      border-color: var(--gold-400);
+      box-shadow: var(--shadow-md);
+    }
+
+    .strength-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold-400);
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .strength-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 10px;
+    }
+
+    .strength-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ============================================
+       Company Info
+       ============================================ */
+    .company-section {
+      background: var(--slate-100);
+    }
+
+    .company-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .company-table {
+      width: 100%;
+    }
+
+    .company-table tr {
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .company-table th,
+    .company-table td {
+      padding: 16px 0;
+      font-size: 14px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .company-table th {
+      font-weight: 600;
+      color: var(--navy-800);
+      width: 120px;
+      white-space: nowrap;
+      padding-right: 24px;
+    }
+
+    .company-table td {
+      color: var(--text-secondary);
+    }
+
+    /* History */
+    .history-timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--slate-300);
+    }
+
+    .history-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .history-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold-400);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold-400);
+    }
+
+    .history-year {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy-700);
+      margin-bottom: 2px;
+    }
+
+    .history-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ============================================
+       Message from CEO
+       ============================================ */
+    .message-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 48px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .message-card::before {
+      content: '\201C';
+      font-family: 'Montserrat', serif;
+      font-size: 120px;
+      color: var(--slate-200);
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .message-text {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 2.1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .message-author {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .message-author-info {
+      font-size: 14px;
+    }
+
+    .message-author-title {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .message-author-name {
+      font-weight: 600;
+      color: var(--navy-800);
+    }
+
+    /* ============================================
+       Contact Section
+       ============================================ */
+    .contact-section {
+      background: linear-gradient(165deg, var(--navy-900), var(--navy-700));
+      color: var(--white);
+      text-align: center;
+    }
+
+    .contact-section .section-label {
+      color: var(--gold-300);
+    }
+
+    .contact-section .section-title {
+      color: var(--white);
+    }
+
+    .contact-section .section-divider {
+      margin: 16px auto 0;
+    }
+
+    .contact-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 40px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 32px 20px;
+      transition: background var(--transition);
+    }
+
+    .contact-item:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .contact-item-icon {
+      margin-bottom: 12px;
+    }
+
+    .contact-item-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--gold-300);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-item-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .contact-item-value {
+      font-size: 14px;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .contact-item-value a {
+      color: var(--white);
+      transition: color var(--transition);
+    }
+
+    .contact-item-value a:hover {
+      color: var(--gold-300);
+    }
+
+    /* ============================================
+       Footer
+       ============================================ */
+    .footer {
+      background: var(--navy-900);
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer-logo span {
+      color: var(--gold-400);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================
+       For Partners Badge
+       ============================================ */
+    .partner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold-500);
+      margin-bottom: 32px;
+    }
+
+    .partner-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ============================================
+       Responsive
+       ============================================ */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        padding: 120px 24px 72px;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .business-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .strengths-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .company-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .message-card {
+        padding: 32px 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== Header ========== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <div>
+          <div class="logo-mark">E<span>-</span>mine</div>
+          <div class="logo-sub">株式会社</div>
+        </div>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#business">事業内容</a>
+        <a href="#strengths">私たちの強み</a>
+        <a href="#company">会社概要</a>
+        <a href="#message">ごあいさつ</a>
+        <a href="#contact" class="nav-contact-btn">お問い合わせ</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== Hero ========== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">For Business Partners</div>
+      <h1>メーカー様・問屋様と<br><em>確かな信頼</em>で繋がる<br>EC小売パートナー</h1>
+      <p class="hero-desc">
+        E-mine株式会社は、Amazon・Yahoo!ショッピング・eBayを主軸としたEC販売事業を展開しています。
+        おもちゃ・食品・日用雑貨・ペット関連・家電など幅広い商材を取り扱い、
+        メーカー様の商品を適正な販売管理のもとエンドユーザー様へお届けしています。
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">2018<small>年〜</small></div>
+          <div class="hero-stat-label">法人設立</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">8<small>年目</small></div>
+          <div class="hero-stat-label">事業継続年数</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">900<small>万円</small></div>
+          <div class="hero-stat-label">資本金</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Business ========== -->
+  <section class="section business-section" id="business">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Business</div>
+        <h2 class="section-title">事業内容</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="business-grid">
+        <div class="business-card">
+          <div class="business-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <h3>EC小売事業</h3>
+          <p>
+            Amazon、Yahoo!ショッピング、eBayを中心に、エンドユーザー様向けの小売販売を行っています。
+            メーカー様のブランド価値を守りながら、適正価格での販売とカスタマーサポートを徹底。
+            豊富な販売実績とデータ分析に基づいた運営で、安定した販路を提供いたします。
+          </p>
+          <div class="business-card-tags">
+            <span class="business-card-tag">Amazon</span>
+            <span class="business-card-tag">Yahoo!ショッピング</span>
+            <span class="business-card-tag">eBay</span>
+            <span class="business-card-tag">直接販売</span>
+          </div>
+        </div>
+        <div class="business-card">
+          <div class="business-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h3>ECコンサルティング事業</h3>
+          <p>
+            ECサイト運営のノウハウを活かし、個人・法人を問わずネット販売の支援を行っています。
+            売上向上に向けた戦略立案から、商品ページの最適化、広告運用まで、
+            実践的なアドバイスで成果につなげます。
+          </p>
+          <div class="business-card-tags">
+            <span class="business-card-tag">売上改善</span>
+            <span class="business-card-tag">ページ最適化</span>
+            <span class="business-card-tag">運営支援</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Strengths ========== -->
+  <section class="section" id="strengths">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Strengths</div>
+        <h2 class="section-title">取引先様に選ばれる理由</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="strengths-grid">
+        <div class="strength-item">
+          <div class="strength-num">01</div>
+          <div class="strength-title">適正な販売管理</div>
+          <div class="strength-desc">ブランド価値を損なわない適正価格での販売を徹底。メーカー様のご要望に沿った販路管理を行います。</div>
+        </div>
+        <div class="strength-item">
+          <div class="strength-num">02</div>
+          <div class="strength-title">迅速なコミュニケーション</div>
+          <div class="strength-desc">お取引先様からのご連絡には迅速に対応。柔軟なやり取りで円滑なお取引を実現します。</div>
+        </div>
+        <div class="strength-item">
+          <div class="strength-num">03</div>
+          <div class="strength-title">安定した販売実績</div>
+          <div class="strength-desc">2018年の法人化以来、多様な商材でEC販売を継続。安定した取引実績がございます。</div>
+        </div>
+        <div class="strength-item">
+          <div class="strength-num">04</div>
+          <div class="strength-title">幅広い商品カテゴリ</div>
+          <div class="strength-desc">おもちゃ、食品、日用雑貨、ペット関連、家電など、多カテゴリに対応した販売力があります。</div>
+        </div>
+        <div class="strength-item">
+          <div class="strength-num">05</div>
+          <div class="strength-title">カスタマーサポート</div>
+          <div class="strength-desc">エンドユーザー様への丁寧なサポート体制を整備。メーカー様のブランドイメージを大切にします。</div>
+        </div>
+        <div class="strength-item">
+          <div class="strength-num">06</div>
+          <div class="strength-title">データに基づく運営</div>
+          <div class="strength-desc">販売データの分析を活かした戦略的な商品展開。需要予測と在庫管理を最適化しています。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Company ========== -->
+  <section class="section company-section" id="company">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Company</div>
+        <h2 class="section-title">会社概要</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="company-layout">
+        <div>
+          <table class="company-table">
+            <tr><th>商号</th><td>E-mine株式会社</td></tr>
+            <tr><th>設立</th><td>2018年1月5日</td></tr>
+            <tr><th>代表</th><td>神戸 幸太郎</td></tr>
+            <tr><th>資本金</th><td>900万円</td></tr>
+            <tr><th>事業内容</th><td>エンドユーザー様向け小売事業<br>ECコンサルティング事業</td></tr>
+            <tr><th>販売チャネル</th><td>Amazon / Yahoo!ショッピング / eBay / 直接販売</td></tr>
+            <tr><th>所在地</th><td>〒239-0842<br>神奈川県横須賀市長沢1-57-6</td></tr>
+            <tr><th>電話番号</th><td>050-5215-1058</td></tr>
+            <tr><th>メール</th><td>info@e-mine.jp</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="section-label" style="margin-bottom:16px;">History</div>
+          <h3 style="font-size:18px; font-weight:600; color:var(--navy-800); margin-bottom:28px;">沿革</h3>
+          <div class="history-timeline">
+            <div class="history-item">
+              <div class="history-year">2017年 6月</div>
+              <div class="history-text">個人事業としてAmazonでのネットショップ運営を開始</div>
+            </div>
+            <div class="history-item">
+              <div class="history-year">2018年 1月</div>
+              <div class="history-text">法人化「E-mine株式会社」を設立</div>
+            </div>
+            <div class="history-item">
+              <div class="history-year">2018年 2月</div>
+              <div class="history-text">Yahoo!ショッピングに「E-mineヤフー店」を出店</div>
+            </div>
+            <div class="history-item">
+              <div class="history-year">2018年〜</div>
+              <div class="history-text">取り扱い商材を拡大、メーカー様との直接取引を強化</div>
+            </div>
+            <div class="history-item">
+              <div class="history-year">2025年〜</div>
+              <div class="history-text">eBayでの販売を開始、海外市場への展開をスタート</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Message ========== -->
+  <section class="section" id="message">
+    <div class="section-inner">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-label">Message</div>
+        <h2 class="section-title">代表ごあいさつ</h2>
+        <div class="section-divider" style="margin:16px auto 0;"></div>
+      </div>
+      <div class="message-card">
+        <div class="message-text">
+          E-mine株式会社のホームページをご覧いただき、誠にありがとうございます。<br><br>
+          当社は2018年の設立以来、Amazon・Yahoo!ショッピングを中心としたEC小売事業を通じて、
+          メーカー様の大切な商品をエンドユーザー様へお届けして参りました。<br><br>
+          常に意識しているのは、メーカー様のブランド価値を守ること、そしてお客様に安心してお買い物いただける環境を整えることです。
+          小さな会社ではございますが、だからこそ一つひとつのお取引を大切にし、
+          誠実な対応を心がけております。<br><br>
+          今後もお取引先様との信頼関係を第一に、事業の成長と共に皆様のお役に立てるよう
+          努めて参ります。何卒よろしくお願い申し上げます。
+        </div>
+        <div class="message-author">
+          <div class="message-author-info">
+            <div class="message-author-title">代表取締役</div>
+            <div class="message-author-name">神戸 幸太郎</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Contact ========== -->
+  <section class="section contact-section" id="contact">
+    <div class="section-inner">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">お問い合わせ</h2>
+        <div class="section-divider" style="margin:16px auto 0;"></div>
+      </div>
+      <p class="contact-desc">
+        お取引に関するご相談・ご質問など、お気軽にお問い合わせください。
+      </p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-item-label">メール</div>
+          <div class="contact-item-value"><a href="mailto:info@e-mine.jp">info@e-mine.jp</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-item-label">電話番号</div>
+          <div class="contact-item-value"><a href="tel:050-5215-1058">050-5215-1058</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-label">所在地</div>
+          <div class="contact-item-value">神奈川県横須賀市<br>長沢1-57-6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">E<span>-</span>mine株式会社</div>
+      <div class="footer-copy">&copy; 2018-2026 E-mine Co., Ltd. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Simple scroll reveal
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.business-card, .strength-item, .company-layout > div, .message-card, .contact-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
